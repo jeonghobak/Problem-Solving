@@ -84,3 +84,93 @@ int main()
 	return 0;
 }
 ```
+
+다시 풀어 보기
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+vector<vector<int>> adj( 1001 );
+vector<bool> isvisit( 1001, false );
+queue<int> q;
+
+void dfs( const int cur ) noexcept;
+void bfs( const int start ) noexcept;
+
+int main()
+{
+	int n = 0;
+	int m = 0;
+	int v = 0;
+	
+	cin >> n >> m >> v;
+	
+	for ( int i = 1; i <= m; ++i )
+	{
+		int s = 0;
+		int e = 0;	
+
+		cin >> s >> e;
+
+		adj[ s ].push_back( e );
+		adj[ e ].push_back( s );
+	}
+
+	for ( int i = 1; i <= n; ++i )
+	{
+		sort( adj[ i ].begin(), adj[ i ].end() );
+	}
+
+	// DFS
+	dfs( v );
+	cout << '\n';
+
+	/// BFS
+	fill( isvisit.begin(), isvisit.end(), false );
+	bfs( v );
+	cout << '\n';
+}
+
+void dfs( const int cur ) noexcept
+{
+	isvisit[ cur ] = true;
+	
+	cout << cur << " ";
+
+	for ( int next : adj[ cur ] )
+	{
+		if ( ! isvisit[ next ] )
+		{
+			dfs( next );
+		}
+	}
+}
+
+void bfs( const int start ) noexcept
+{
+	q.push( start );
+
+	isvisit[ start ] = true;
+
+	while ( ! q.empty() )
+	{
+		const int cur = q.front();		
+		q.pop();			
+		cout << cur << " ";
+		
+		for ( int next : adj[ cur ] )
+		{
+			if ( ! isvisit[ next ] )
+			{
+				isvisit[ next ] = true;
+				q.push( next );
+			}
+		}
+	}
+}
+
+```
