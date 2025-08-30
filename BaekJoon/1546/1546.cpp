@@ -1,4 +1,6 @@
-﻿#include<iostream>
+﻿/* 문제 출처 : https://www.acmicpc.net/problem/1546 */
+
+#include<iostream>
 
 int main()
 {

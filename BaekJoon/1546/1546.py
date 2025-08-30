@@ -1,3 +1,5 @@
+# 문제 출처 : https://www.acmicpc.net/problem/1546
+
 n = int(input())
 
 curList = list(map(int, input().split()))

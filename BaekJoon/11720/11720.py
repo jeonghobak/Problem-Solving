@@ -1,3 +1,4 @@
+# 문제 출처 : https://www.acmicpc.net/problem/11720
 n = input()
 n = int(n)
 
